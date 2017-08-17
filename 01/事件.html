@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按钮事件</title>
+</head>
+<body>
+    <div>
+        <span>以前的事件</span>
+        <button  onclick="btnclick()" >button</button>
+        <hr>
+        <span>vue的事件</span>
+        <br>
+        <p>  @写法(简写，推荐使用)</p>
+        <button @click="vclick()">v-button</button>
+        <br>
+        <span>v-on:click  写法</span>
+        <button v-on:click="sayHello()">sayHello</button>
+        <button v-on:click="modify()">修改msg值</button>
+        <div>
+            <span>data里面的msg数据:</span>
+            <span>{{msg}}</span>
+        </div>
+        <hr>
+        <span>mouseout 事件</span>
+        <button @mouseover="overEvent()">鼠标移进来试试</button>
+        <button @mouseout="outEvent()">鼠标移出试试</button>
+    </div>
+    
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+    // 以前的按钮事件
+    function btnclick(){
+        alert('我是点击事件');
+    }
+
+// 用
+    var vm = new Vue({
+        el:'body',
+        data () {
+            return {
+                msg:'hello'      
+            }
+        },
+        methods: {
+            vclick(){
+                alert('vue click');
+            },
+            sayHello(){
+                // 获取data里面的属性值
+                alert(this.msg);
+            },
+            modify(){
+                this.msg ='我是修改后的值';
+            },
+            overEvent(){
+                // alert('overEven');
+                console.log('overEvent')
+            },
+            outEvent(){
+                // alert('outEven');
+                console.log('outEvent')
+            }
+        }
+    })
+</script>
+</body>
+</html>

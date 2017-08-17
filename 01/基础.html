@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="msg">
+        <input type="text" v-model="msg">
+        <br>
+        {{msg}}
+        <br>
+        {{msg1}}
+        <br>
+        {{msg2}}
+        <br>
+        {{arr}}
+        <br>
+        {{ jsonObj |json}}
+        <hr>    
+        <span>for 循环使用</span>
+        <ul>
+            <li v-for="phome in phoneList ">{{phome}}</li>
+        </ul>
+        <span>or</span>
+        <ul>
+            <li v-for="value in phoneList ">{{value}}  下标为 {{$index}}</li>
+        </ul>        
+        <hr>
+        <span>循环取json</span>
+        <ul>
+            <li v-for="(v ,k) in jsonObj">{{v}}  :  {{k}}</li>
+        </ul>
+        <span>通过 直接取键值</span>
+        <ul >
+            <li>{{jsonObj.name}}</li>
+            <li>{{jsonObj.age}}</li>
+        </ul>
+        <hr>
+        <span>循环对象数组</span>
+        <ul>
+            <li v-for="item in fruits">{{item.name}}  价格是：{{item.price}}</li>
+        </ul>
+    </div>
+
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#box',
+        data:{
+            msg:'vue',
+            msg1:1,
+            msg2:false,
+            arr:['can','tom'],
+            jsonObj:{'name':'can','age':25},
+            phoneList:['iPhome 6','iPhome 7','iPhome 8'],
+            fruits:[
+                {'name':'apple','price':3.5},
+                {'name':'banana','price':1.9},
+                {'name':'orange','price':2.5},
+                {'name':'grape','price':3.2}
+            ]
+        }
+    });
+
+</script>    
+</body>
+
+</html>

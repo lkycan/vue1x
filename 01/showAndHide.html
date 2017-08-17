@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通过修改属性状态show 显示</title>
+    <style>
+        #box{
+            /*width: 200px;
+            height: 200px;
+            background-color: red;*/
+        }
+    </style>
+</head>
+<body>
+    
+    <button type="button" @click="show()" class="btn btn-default">button</button>
+    
+    <div id="box" v-show='state'>
+        <ul>
+            <li v-for="item in phoneList ">{{item}}</li>
+        </ul>
+    </div>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script>
+        var vm =new Vue({
+            el:'body',
+            data () {
+                return {
+                    state:true,      
+                    phoneList:['iPhome 6','iPhome 7','iPhome 8']
+                }
+            },
+            methods:{
+                show(){
+                    this.state =!this.state;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
