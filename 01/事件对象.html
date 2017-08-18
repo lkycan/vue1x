@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按钮事件</title>
+    <style>
+        #box{
+            background-color: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" @click="boxClick()">
+        <br>
+        <p>  @写法(简写，推荐使用)</p>
+        <button @click="vclick()">v-button</button>
+
+    </div>
+    
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+
+// 用
+    var vm = new Vue({
+        el:'body',
+        data () {
+            return {
+                msg:'hello'      
+            }
+        },
+        methods: {
+            vclick(){
+                alert('vue click');
+            },
+            boxClick(){
+                alert('box click');
+            }
+        }
+    })
+</script>
+</body>
+</html>
