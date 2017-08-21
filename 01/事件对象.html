@@ -6,15 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>按钮事件</title>
     <style>
-        #box{
+        .box{
             background-color: red;
             width: 200px;
             height: 200px;
         }
+        #box2{
+            background-color: green;
+            width: 300px;
+            height: 300px;
+
+        }
     </style>
 </head>
 <body>
-    <div id="box" @click="boxClick()">
+    <div class="box" @click="boxClick($event)">
         <br>
         <p>  @写法(简写，推荐使用)</p>
         <button @click="vclick($event)">v-button</button>
@@ -22,15 +28,43 @@
     </div>
 
 <!--以前的方式-->
-    <button onclick="btnclick(event)">以前btn</button>    
+<div class="box" onclick="box2click(event)">
+     <button onclick="btnclick(event)">以前btn</button>    
+</div>
+
+    <div class="box" @click="boxClick($event)">
+        <br>
+        <p> @click.stop(阻止冒泡简写)</p>
+        <button @click.stop="stopClick()">v-button</button>
+    </div>
+   
+       <div class="box" @click="boxClick($event)">
+        <br>
+        <p> 阻止默认事件-鼠标右键</p>
+        <button @contextmenu.prevent="menuClick()">contextmenu</button>
+    </div>
+   <input type="text" >
 <script src="../bower_components/vue/dist/vue.js"></script>
 <script>
+  
     // 以前获取事件的方式
-    function btnclick(ev){
+    function btnclick(event){
         // alert(1);
         console.log('以前的');
-        console.log(ev);
+        console.log(event);
+        eventent.stopPropagation();
+        event.cancelBubble=true;
     }
+
+    function box2click(event){
+        // alert(1);
+        console.log('box2');
+        console.log(event);
+        if(event.altKey){
+            console.log('事件被触发时候 alt 键被按下');
+        }
+    }
+
 
 // 用
     var vm = new Vue({
@@ -41,13 +75,25 @@
             }
         },
         methods: {
-            vclick(ev){
+            vclick(event){
                 // alert('vue click');
-                console.log(ev);
+                
+                console.log(event);
+                console.log('btn');
+                // event.stopPropagation();
+                event.cancelBubble=true;
             },
-            boxClick(){
+            boxClick(event){
                 // alert('box click');
-                console.log('box click');
+                console.log(event);
+            },
+            stopClick(){
+                console.log('stopClick');
+            },
+            // 阻止鼠标右键
+            menuClick(){
+                alert('menu');
+                // event.preventDefault();
             }
         }
     })

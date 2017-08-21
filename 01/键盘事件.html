@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘</title>
+</head>
+<body>
+    <input type="text" @keydown="keydownFnc($event)">
+    <span>监听up down</span>
+    <input type="text" @keyup="keydownFnc($event)">
+    <br>    
+    <input type="text" @keyup.enter="keydownFnc($event)">
+    <!--left right up down enter delete -->
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script>
+// 用
+    var vm = new Vue({
+        el:'body',
+        methods: {
+            keydownFnc(event){
+                console.log(event);
+                console.log(event.keyCode)
+            }
+        }
+    })
+    </script>
+</body>
+</html>
