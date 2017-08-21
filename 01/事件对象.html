@@ -17,12 +17,20 @@
     <div id="box" @click="boxClick()">
         <br>
         <p>  @写法(简写，推荐使用)</p>
-        <button @click="vclick()">v-button</button>
+        <button @click="vclick($event)">v-button</button>
 
     </div>
-    
+
+<!--以前的方式-->
+    <button onclick="btnclick(event)">以前btn</button>    
 <script src="../bower_components/vue/dist/vue.js"></script>
 <script>
+    // 以前获取事件的方式
+    function btnclick(ev){
+        // alert(1);
+        console.log('以前的');
+        console.log(ev);
+    }
 
 // 用
     var vm = new Vue({
@@ -33,11 +41,13 @@
             }
         },
         methods: {
-            vclick(){
-                alert('vue click');
+            vclick(ev){
+                // alert('vue click');
+                console.log(ev);
             },
             boxClick(){
-                alert('box click');
+                // alert('box click');
+                console.log('box click');
             }
         }
     })

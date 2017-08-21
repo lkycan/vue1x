@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>基础</title>
 </head>
 <body>
     <div id="box">
         <input type="text" v-model="msg">
         <input type="text" v-model="msg">
         <br>
-        {{msg}}
+        <span>{{msg}}</span>
         <br>
         {{msg1}}
         <br>
@@ -45,7 +45,7 @@
             <li v-for="item in fruits">{{item.name}}  价格是：{{item.price}}</li>
         </ul>
     </div>
-
+<!--引入vue.js-->
 <script src="../bower_components/vue/dist/vue.js"></script>
 <script>
     var vm = new Vue({
