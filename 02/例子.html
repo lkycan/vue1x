@@ -78,6 +78,30 @@
         </div>
     </div>
 
+    <div>
+        <form role="form">
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" class="form-control" v-model='obj.name' id="name" placeholder="请输入姓名">
+        </div>
+        <div class="form-group">
+            <label for="name">年龄</label>
+            <input type="number" class="form-control" v-model='obj.age' id="name" placeholder="请输入年龄">
+        </div>
+        <div class="form-group">
+            <label for="name" >性别</label>
+            <label class="radio-inline" >
+            <input type="radio" v-model='obj.sex' name="sex" id="man" value="男">男
+            </label>
+            <label class="radio-inline">
+            <input type="radio" v-model='obj.sex' name="sex" id="woman" value="女">女
+            </label>
+        </div>
+
+        <button type="button" @click="add()" class="btn btn-default">提交</button>
+        </form>        
+    </div>
+
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/vue/dist/vue.js"></script>
@@ -92,7 +116,13 @@
                     // selectIndex:'',
                     viewItem:'',
                     deleteIndex:'',
-                    apiUrl:'obj.json'
+                    // 请求的接口
+                    apiUrl:'obj.json',
+                    obj:{
+                        name:'',
+                        age:'',
+                        sex:''
+                    }
                 }
             },
             methods:{
@@ -104,6 +134,12 @@
                     // this.viewItem = this.userList[index];
                     this.userList.splice(index,1);
                     console.log(index);
+                },
+                add(){
+                    // alert(1)
+                    console.log(this.obj);
+                    this.userList.push(this.obj);
+                    this.obj={};
                 },
                 getData(){
                     this.$http({
