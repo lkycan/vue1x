@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>常用表格显示数据</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body >
+    <div>
+        <table class="table table-condensed table-bordered table-hover">
+            <thead class="info">
+                <tr class="row info text-center">
+                    <th class="text-center">序号</th>
+                    <th  class="text-center">姓名</th>
+                    <th  class="text-center">年龄</th>
+                    <th  class="text-center">性别</th>
+                    <th  class="text-center" width="180">操作</th>
+                </tr>
+            </thead>
+             <tbody>
+                <tr class="row text-center" v-for=" user in userList" v-cloak>
+                    <td >{{$index+1}}</td>
+                    <td >{{user.name}}</td>
+                    <td >{{user.age}}</td>
+                    <td >{{user.sex}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" @click="view($index)" data-toggle="modal" data-target="#viewModel">查看</button>
+                        <button type="button" class="btn btn-danger" @click=" deleteIndex=$index"  data-toggle="modal" data-target="#deleteModel">删除</button>
+                    </td>
+
+                </tr>    
+             </tbody>
+             
+        </table>
+    </div>
+    <!--view-->
+    <div>
+        <div class="modal fade" id="viewModel" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">用户详细信息</h4>
+                </div>
+                <div class="modal-body" >
+                    {{viewItem | json}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--delete 模态确认-->
+    <div>
+        <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">确定要删除吗？</h4>
+                </div>
+                <!--<div class="modal-body" >
+                </div>-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" @click="deleteObj(deleteIndex)">删除</button>
+                </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../bower_components/vue-resource/dist/vue-resource.js"></script>
+    <script>
+        var vm =new Vue({
+            el:'body',
+            data () {
+                return {
+                    userList:[
+                    ],
+                    // selectIndex:'',
+                    viewItem:'',
+                    deleteIndex:'',
+                    apiUrl:'obj.json'
+                }
+            },
+            methods:{
+                view(index){
+                    this.viewItem = this.userList[index];
+                },
+                deleteObj(index){
+                    // this.userList
+                    // this.viewItem = this.userList[index];
+                    this.userList.splice(index,1);
+                    console.log(index);
+                },
+                getData(){
+                    this.$http({
+                        url:this.apiUrl,
+                        data:{
+                            act:'get'
+                        }
+                    }).then(function(res){
+                        // console.log(res.data.list);
+                        this.userList = res.data.list;
+                    })
+                }                
+            },
+            ready(){
+                this.getData();
+            }
+        })
+    </script>
+</body>
+</html>
