@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input v-model='msg' type="text" @keydown="show($event,$index) | debounce 1500">
+        <ul>
+            <!--1 排序   -1倒序-->
+            <li v-for="item in list | orderBy msg" v-text="item" >
+                
+            </li>
+        </ul>
+    </div>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script src="../bower_components/vue-resource/dist/vue-resource.js"></script>
+<script>
+    var vm = new Vue({
+
+        data:{
+            msg:"",
+            list:['apple','iphone8','letv','vovo','huawei','iphone5'],
+        },
+        methods: {
+            show(els,index){
+                // alert('按下键盘');
+                // console.log(this.msg)
+                // console.log(els.path);
+                // this.list.push('iphone '+this.msg);
+                // els.append('<h1>asdasd</h1>');
+            }
+        }
+    }).$mount('body');
+    
+
+</script>    
+</body>
+
+</html>

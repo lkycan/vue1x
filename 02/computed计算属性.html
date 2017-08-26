@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body>
+
+    <div>
+       num1 is  <span>{{num1}}</span>
+       <hr>
+       我是num1 加3， num2 is <span>{{num2}}</span> ，num1 变化我也会跟着变化
+    </div>
+    
+    <button type="button" @click="add()" class="btn btn-default">点击我num增加1</button>
+    <button type="button" @click="subtract()" class="btn btn-default">点击我num减去1</button>
+    <button type="button" @click="setNum2()" class="btn btn-default">点击我调用set  num2</button>
+    
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script src="../bower_components/vue-resource/dist/vue-resource.js"></script>
+<script>
+    var vm = new Vue({
+        el:'body',
+        data:{
+          num1:5
+        },
+        computed: {
+            // 默认调用的是get 方法
+            // num2(){
+            //     return this.num1+3;
+            // }
+            num2:{
+                get(){
+                    return this.num1+3;
+                },
+                set(val){
+                    return this.num1=val;
+                }
+            }
+        },
+        methods: {
+            add(){
+                this.num1++;
+            },
+            subtract(){
+                this.num1--;
+            },
+            setNum2(){
+                this.num2 =20;
+            }
+        }
+    });
+    
+</script>    
+</body>
+
+</html>

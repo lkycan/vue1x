@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body v-cloak>
+
+    <div>
+        <input v-model='msg' type="text" >
+        <p>{{msg | test}}</p>
+    </div>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+        Vue.filter('test',function(input){
+            // alert(input);
+            return input<0?'0':input;
+        })
+
+        var vm = new Vue({
+
+        data:{
+            msg:"",
+         
+        },
+        methods: {
+        }
+    }).$mount('body');
+    
+
+</script>    
+</body>
+
+</html>
