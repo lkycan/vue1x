@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body v-cloak>
+
+    <div v-drag :style="{width:'200px',height:'200px',background:'red',position:'absolute',right:0,top:0}">
+    </div>
+    <div v-drag :style="{width:'200px',height:'200px',background:'green',position:'absolute',left:0,top:0}">
+    </div>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+        Vue.directive('drag',function(){
+            var vDiv = this.el;
+            // console.log(vDiv);
+            vDiv.onmousedown =function(ev){
+               var  disX = ev.clientX-vDiv.offsetLeft;
+               var  disY = ev.clientY-vDiv.offsetTop;
+               
+               document.onmousemove =function(ev){
+                   var l=ev.clientX-disX;
+                   var t=ev.clientY-disY;
+                    if(l<0){
+                        l=0;
+                    }
+                    if(t<0){
+                        t=0;
+                    }
+                 
+                    console.log('l is '+l);
+                    console.log('t is '+t);
+                   vDiv.style.left=l+'px';
+                   vDiv.style.top=t+'px';
+               };
+               document.onmouseup=function(ev){
+                   document.onmousemove=null;
+                   document.onmouseup=null;
+                   
+               }
+            }
+        })
+
+        var vm = new Vue({
+
+        data:{
+            msg:"hi",
+         
+        },
+        methods: {
+        }
+    }).$mount('body');
+    
+
+</script>    
+</body>
+
+</html>
