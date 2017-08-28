@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body v-cloak>
+
+    <div>
+        <input  type="text" @keydown.Ctrl="show($event)">
+        <span >{{msg}}</span>
+    </div>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+
+    
+        Vue.directive('on').keyCodes.ctrl=17;
+
+        var vm = new Vue({
+
+        data:{
+            msg:"hi",
+         
+        },
+        methods: {
+            show(ev){
+                alert(ev.keyCode)
+                console.log(ev);
+            }
+        }
+    }).$mount('body');
+    
+
+</script>    
+</body>
+
+</html>

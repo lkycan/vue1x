@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+    <style>
+        /*把这句注释掉，快速点击刷新，就会看到 {{}} */
+        [v-cloak] { display: none }
+    </style>
+</head>
+<body v-cloak>
+
+    <div>
+        <input v-model='msg' type="text" >
+        <span v-test>{{a}}</span>
+        
+        <button type="button" class="btn btn-default" @click="change">点击改变data的值</button>
+
+        <hr>
+        {{obj | json}}
+        <button type="button" class="btn btn-default" @click="changeObj">点击改变data的值</button>
+    </div>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+    // 注意 指令 是v-test    
+        Vue.directive('test',function(){
+            // console.log(this);
+        })
+
+        
+
+        var vm = new Vue({
+
+        data:{
+            a:"hi",
+            obj:{'name':'can','age':25}
+        },
+        methods: {
+            change(){
+                this.a='haha'
+            },
+            changeObj(){
+                this.obj.age=20;
+            }
+        }
+    }).$mount('body');
+    vm.$watch('a',function(){
+        alert('数据改变了')
+    })
+    vm.$watch('obj',function(){
+        alert('obj数据改变了')
+    },{deep:true})
+
+</script>    
+</body>
+
+</html>
