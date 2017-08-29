@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件</title>
+    <style>
+     
+        [v-cloak] { display: none }
+
+        /*#box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 0 auto;
+        }*/
+
+
+    </style>
+</head>
+<body>
+    
+
+    
+    <div id="box">
+        <aaa></aaa>
+    </div>
+    <template id="aaa">
+		<h1>11111</h1>
+		<bbb :mmm="msg2" :my-msg="msg"></bbb>
+	</template>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'body',
+        data:{
+            a:'aaa'
+        },
+        methods: {
+
+        },
+        // 第二个模版
+        components:{ //局部组件
+            'aaa':{
+                template:'#aaa',
+                data(){
+                    return {
+                        msg:'1255',
+                        msg2:'我是父组件的数据'
+                    }
+                },
+                components:{
+                    'bbb':{
+                        // 
+                        props:['mmm','myMsg'],
+                        template:'<h3>我是bbb-->{{mmm}}<hr/>--->{{myMsg}}</h3>'
+                    }
+                }
+            }
+        }
+    });
+    
+</script>    
+</body>
+
+</html>

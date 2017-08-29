@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件</title>
+    
+    <style>
+     
+        [v-cloak] { display: none }
+
+        /*#box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 0 auto;
+        }*/
+        .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+
+
+    </style>
+</head>
+<body>
+    
+
+    
+    <div id="box">
+        <input type="button" @click="a='aaa'" value="手机">
+        <input type="button" @click="a='bbb'" value="食物">
+        <div class="clearfix"> 
+        <component :is="a"></component>
+    </div>
+
+    
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'body',
+        data:{
+            a:'aaa'
+        },
+        methods: {
+
+        },
+        // 第二个模版
+        components:{ //局部组件
+            'aaa':{
+                template:
+                        '<ul>'+
+                            '<li v-for="item in list" >{{item}}</li>'+
+                        '</ul>',
+                data(){
+                   return{
+                        list:['iphone1','iphone2','iphone3','iphone4']
+                   } 
+                }
+            },
+            'bbb':{
+                template:'<ul>'+
+                            '<li v-for="item in list" >{{item}}</li>'+
+                        '</ul>',
+                data(){
+                   return{
+                        list:['咸鱼','白菜','豆腐','鱼丸']
+                   } 
+                }
+            },
+        }
+    });
+    
+</script>    
+</body>
+
+</html>
