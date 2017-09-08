@@ -50,6 +50,7 @@
     vm.$watch('a',function(){
         alert('数据改变了')
     })
+    // 深度数据监听
     vm.$watch('obj',function(){
         alert('obj数据改变了')
     },{deep:true})

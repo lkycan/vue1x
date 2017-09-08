@@ -19,8 +19,8 @@
 <!--引入vue.js-->
 <script src="../bower_components/vue/dist/vue.js"></script>
 <script>
+        // 这个过滤器，如果是负数就返回0
         Vue.filter('test',function(input){
-            // alert(input);
             return input<0?'0':input;
         })
 
