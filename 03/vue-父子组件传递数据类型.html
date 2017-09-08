@@ -26,7 +26,7 @@
     </div>
     <template id="aaa">
 		<h1>11111</h1>
-		<bbb :mmm="msg2" :my-msg="msg"></bbb>
+		<bbb :mmm="msg2" :my-msg="num"></bbb>
 	</template>
 <!--引入vue.js-->
 <script src="../bower_components/vue/dist/vue.js"></script>
@@ -46,14 +46,17 @@
                 template:'#aaa',
                 data(){
                     return {
-                        msg:'1255',
+                        num:25,
                         msg2:'我是父组件的数据'
                     }
                 },
                 components:{
                     'bbb':{
                         // 
-                        props:['mmm','myMsg'],
+                        props:{
+                            'mmm':String,
+                            'num':Number
+                        },
                         template:'<h3>我是bbb-->{{mmm}}<hr/>--->{{myMsg}}</h3>'
                     }
                 }
