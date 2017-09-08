@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画</title>
+    <style>
+     
+        [v-cloak] { display: none }
+
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <aaa>
+            <ul slot='ul-name'>
+                <li>111</li>
+                <li>222</li>
+                <li>3331</li>
+                <li>444</li>
+            </ul>
+            <ol slot="ol-name">
+                <li>aaa</li>
+                <li>bbb</li>
+                <li>ccc</li>
+                <li>ddd</li>
+            </ol>
+        </aaa>
+    </div>    
+    <template  id="aaa">
+        <h2>我是aaa</h2>
+        <slot name='ul-name'>默认情况</slot>
+        <slot name='ol-name'>OL默认情况</slot>
+        <p>hahah</p>
+    </template>
+<!--引入vue.js-->
+<script src="../bower_components/vue/dist/vue.js"></script>
+<script src="../bower_components/vue-resource/dist/vue-resource.js"></script>
+<script>
+    var vm = new Vue({
+        el:'body',
+        data:{
+            state:true
+        },
+        components: {
+            'aaa':{
+                template:'#aaa'
+            }
+        }
+
+    });
+    
+</script>    
+</body>
+
+</html>
